@@ -1,0 +1,51 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+    {% if message is not null %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class="articleAdd-form-container">
+        <form method="post" action="/api/article/edit?id={{ article.id }}">
+            <input hidden name="id" value="{{ article.id }}">
+            <div class="form-group">
+                <label for="title">Article title</label>
+                <input name="title"type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{ article.title }}">
+            </div>
+            <div class="form-group">
+                <label for="author">Article author</label>
+                <input name="author" type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{ article.author }}">
+            </div>
+
+            <div class="form-group">
+                <label for="year_release">Year release</label>
+                <input name="year_release" type="number" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{ article.year_release }}">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Magazine</label>
+                <select name="magazine_title" class="form-control" id="exampleFormControlSelect1">
+                    {% if magazines is not null %}
+                        {% for magazine in magazines %}
+                            <option {%  if magazine.magazine_title == article.magazine_title %} selected {% endif %}>
+                                {{ magazine.magazine_title }}
+                            </option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="text">Article text</label>
+                <textarea name="articles_text" class="form-control" id="exampleFormControlTextarea1" rows="3" >{{ article.articles_text }}</textarea>
+            </div>
+
+            <div class="create-article-submit">
+                <button type="submit" class="btn btn-primary mb-2 ">Edit Article</button>
+            </div>
+
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+
+    <div class="articleAdd-form-container">
+
+        {% if message is not null %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+
+    <form method="post" action="/api/article/create">
+        <div class="form-group">
+            <label for="title">Article title</label>
+            <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="author">Article author</label>
+            <input name="author" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <label for="year_release">Year release</label>
+            <input name="year_release" type="number" class="form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Magazine</label>
+            <select name="magazine"class="form-control" id="exampleFormControlSelect1">
+                {% if magazines is not null %}
+                    {% for magazine in magazines %}
+                        <option>{{ magazine.magazine_title }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="text">Article text</label>
+            <textarea name="text"class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+        <div class="create-article-submit">
+            <button type="submit" class="btn btn-primary mb-2 ">Create Article</button>
+        </div>
+
+    </form>
+    </div>>
+{% endblock %}

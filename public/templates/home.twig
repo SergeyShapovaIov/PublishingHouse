@@ -1,71 +1,112 @@
 {% extends 'base.twig' %}
 
 {% block body %}
-<main>
-     <div id="filter-title">
-        Фильтрация результата поиска
-     </div>
+    <main>
+        <div id="filter-title">
+            Фильтрация результата поиска
+        </div>
 
-     <form action="/" method="get"> 
-     <div id="filter-container">
-      <label>Введите название статьи</label>
-        <input id="input-title" class="input-item" type="text" placeholder="Название"></br>
-        <label>Введите название журнала</label>
-        <input id="input-magazine" class="input-item" type="text" placeholder="Журнал"></br>
-        <label>Введите имя автора</label>
-        <input id="input-author" class="input-item" type="text" placeholder="Автор"></br>
-        <label>Введите год публикации</label>
-        <input id="input-year" class="input-item" type="text" placeholder="Год"></br>
-        <button id="apply-filter-btn">
-            Применить фильтр
-        </button>
-         <button id="clear-filter-btn" href="" >
-            Очистить фильтр
-        </button>
-     </div>
-     </form>
+        <form action="/" method="get">
+            <div id="filter-container">
+                <label>Введите название статьи</label>
+                <input id="input-title" class="input-item" type="text" placeholder="Название"></br>
+                <label>Введите название журнала</label>
+                <input id="input-magazine" class="input-item" type="text" placeholder="Журнал"></br>
+                <label>Введите имя автора</label>
+                <input id="input-author" class="input-item" type="text" placeholder="Автор"></br>
+                <label>Введите год публикации</label>
+                <input id="input-year" class="input-item" type="text" placeholder="Год"></br>
+                <button id="apply-filter-btn">
+                    Применить фильтр
+                </button>
+                <button id="clear-filter-btn" href="">
+                    Очистить фильтр
+                </button>
+            </div>
+        </form>
+        {% if user is not null %}
+            <div class="add-container">
+                <a href="/article-add">
+                    <span>Добавить запись </span>
+                    <img class="img-edit-card" src="templates/images/icons8-плюс-2-50.png" alt="edit button">
+                </a>
+            </div>
 
-     <div class="articles-cards-conainer">
+            <div class="articles-cards-conainer">
 
-         {% if user is not null %}
 
-     {% for article in articles%}
-        <div class="article-card">
-            <div class="container text-center">
-                        <div class="row">
-                             <div class="col-5">
-                               <h4>{{article.author}}</h4>
-                            </div>
-                            <div class="col-5">
-                               <h4>{{article.magazine_title}}</h4>
-                            </div>
-                            <div class="col-2">
-                                 {{article.year_release}}
-                            </div>
-                        </div>
-                    <div class="container text-center">
-                        <div class="row">
-                             <div class="col-6">
-                                <div class="articles-image">
-                                     <img class="preview-image" src={{article.article_announcement_picture}}>
+                {% for article in articles %}
+                    <div class="article-card">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col-5">
+                                    <h4>{{ article.author }}</h4>
+                                </div>
+                                <div class="col-5">
+                                    <h4>{{ article.magazine_title }}</h4>
+                                </div>
+                                <div class="col-2">
+                                    {{ article.year_release }}
                                 </div>
                             </div>
-                            <div class="col-6">
-                                 {{article.title}} </br>
-                                 <div class="arcticles-text">
-                                    {{article.text}}
-                                 </div>
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="articles-image">
+                                            <img class="preview-image" src={{ article.article_announcement_picture }}>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="article-title-container">
+                                            {{ article.title }}
+                                        </div>
+
+                                        <div class="arcticles-text">
+                                            {{ article.articles_text }}
+                                        </div>
+                                    </div>
+                                    <div class="button-container">
+                                        <div class="img-delete-container">
+                                            <a href="/api/article/deleteById/?id={{ article.id }}">
+                                                <img class="img-delete-card"
+                                                     src="templates/images/trash_bin_icon-icons.com_67981.png"
+                                                     alt="delete-button">
+                                            </a>
+                                        </div>
+                                        <div class="img-edit-container">
+                                            <a href="/article-edit?id={{ article.id }}" methods="">
+                                                <img class="img-edit-card"
+                                                     src="templates/images/editdocument_105148.png" alt="edit button">
+                                            </a>
+                                        </div>
+                                        <div class="btn-change-picture">
+                                            <a href="/article-change-picture?id={{ article.id }}">
+                                                <button class="btn btn-success">
+                                                    Изменить фото
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
                     </div>
-            </div>
-    
-        </div>
-        {% endfor %}
-         {% endif %}
+                {% endfor %}
 
-        
-    </div>
-</main> 
- {% endblock %} 
+            </div>
+        {% else %}
+            <div class="access-denied-container">
+                <div class="access-denied-text">
+                    Access denied!
+                </div>
+                <div class="btn-access-container">
+                    <a href="/login">
+                        <button class="btn btn-info btn-login">
+                            Войти
+                        </button>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}

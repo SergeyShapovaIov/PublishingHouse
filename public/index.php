@@ -5,10 +5,10 @@ use App\Controllers\AuthorizationController;
 use App\Controllers\ViewController;
 use App\Controllers\Session;
 use App\Database\Storage\ArticleStorage;
+use App\Database\Storage\MagazineStorage;
 use App\Database\Storage\UserStorage;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Slim\App;
 use DI\Container as Container;
 use Slim\Factory\AppFactory;
 use Slim\Http\Response;
@@ -40,8 +40,8 @@ $view = new Environment ($loader);
 $container = new Container();
 
 $articleStorage = new ArticleStorage($db);
-$articleController = new ArticleController($articleStorage);
 $userStorage = new UserStorage($db);
+$magazineStorage = new MagazineStorage($db);
 
 $session = new Session();
 $sessionMiddleware = function (ServerRequestInterface $request, RequestHandlerInterface $handler) use ($session){
@@ -56,8 +56,8 @@ $container->set('view', $view);
 $container->set('db', $db);
 $container->set('session', $session);
 $container->set('articleStorage', $articleStorage);
-$container->set('articleController', $articleController);
 $container->set('userStorage', $userStorage);
+$container->set('magazineStorage', $magazineStorage);
 
 
 AppFactory::setContainer($container);
@@ -66,19 +66,27 @@ $app = AppFactory::create();
 $container = $app->getContainer();
 
 $app->add($sessionMiddleware);
-$viewController = new ViewController($container);
 $authorizationController = new AuthorizationController($container);
+$articleController = new ArticleController($container);
+$container->set('articleController', $articleController);
+$viewController = new ViewController($container);
 
 $app->get('/', ViewController::class . ':index');
 $app->get('/login', ViewController::class . ':login');
 $app->get('/registration', ViewController::class . ':registration');
+$app->get('/article-add', ViewController::class . ':addArticle');
+$app->get('/article-edit', ViewController::class . ':editArticle');
+$app->get('/article-change-picture', ViewController::class . ':changePicture');
 
 $app->post('/api/login', AuthorizationController::class . ':login');
 $app->post('/api/registration', AuthorizationController::class . ':registration');
 $app->post('/api/logout', AuthorizationController::class . ':logout');
-$app->delete('/api/article/deleteById', ArticleController::class . ':deleteById');
+
+$app->get('/api/article/deleteById/', ArticleController::class . ':deleteById');
 $app->post('/api/article/create', ArticleController::class . ':create');
 $app->post('/api/article/update', ArticleController::class . ':update');
+$app->post('/api/article/edit', ArticleController::class . ':edit');
+$app->post('/api/article/changePictureById', ArticleController::class . ':changePictureById');
 
 $app->run();
 

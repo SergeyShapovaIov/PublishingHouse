@@ -50,29 +50,11 @@ class UserStorage{
         if(empty($params['rh_factor'])){
             throw new AuthorizationException("The rh factor should not be empty!");
         }
-       /* if(array_key_exists('password', $params)){
-            $pass = $params['password'];
-            if(sizeof($pass) < 6){
-                throw new AuthorizationException("Incorrect password!");
-            }
-        }*/
 
         $stmt = $this->db->prepare('INSERT INTO users (login, password, username, date_of_birth, 
                    address, gender, interests, vk, blood_group, rh_factor) 
                     VALUES (:login,:password, :username,:date_of_birth, :address, :gender,
                             :interests, :vk, :blood_group, :rh_factor)');
-
-//        $stmt->bindValue(':login', $params['login'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':password', $params['password'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':username', $params['username'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':date_of_birth', $params['date_of_birth'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':address', $params['address'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':gender', $params['gender'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':interests', $params['interests'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':vk', $params['vk'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':blood_group', $params['blood_group'], \PDO::PARAM_STR);
-//        $stmt->bindValue(':rh_factor', $params['rh_factor'], \PDO::PARAM_STR);
-
         $stmt->execute([
             'login' => $params['login'],
             'password' => password_hash($params['password'],PASSWORD_BCRYPT),
