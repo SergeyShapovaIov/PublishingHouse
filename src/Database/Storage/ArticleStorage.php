@@ -115,10 +115,13 @@ class ArticleStorage
   public function editArticle($params) : void
   {
     $this->throwIfEmpty($params, 'title');
-    $this->throwIfEmpty($params, 'text');
+    $this->throwIfEmpty($params, 'articles_text');
     $this->throwIfEmpty($params, 'id_magazine');
     $this->throwIfEmpty($params, 'author');
     $this->throwIfEmpty($params, 'year_release');
+    if($params['year_release']< 0) {
+      throw new CreateArticleException("Field: YEAR OF REALESE MUST BE >0");
+    }
 
     $stmt = $this->db->prepare('
                 UPDATE PublishingHouse.articles 

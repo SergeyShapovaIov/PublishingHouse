@@ -21,7 +21,8 @@
 
             <div class="form-group">
                 <label for="year_release">Year release</label>
-                <input name="year_release" type="number" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{ article.year_release }}">
+                <input name="year_release" type="number" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{ article.year_release }}"
+                    pattern="[0-9]{4}"required >
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Magazine</label>
