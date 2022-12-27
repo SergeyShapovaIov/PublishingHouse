@@ -1,0 +1,115 @@
+-- MySQL dump 10.13  Distrib 8.0.31, for macos12.6 (x86_64)
+--
+-- Host: 127.0.0.1    Database: PublishingHouse
+-- ------------------------------------------------------
+-- Server version	8.0.31
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `articles`
+--
+
+DROP TABLE IF EXISTS `articles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `articles` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `article_announcement_picture` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `id_magazine` int NOT NULL,
+  `articles_text` varchar(10000) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `year_release` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_magazine` (`id_magazine`),
+  CONSTRAINT `id_magazine` FOREIGN KEY (`id_magazine`) REFERENCES `magazines` (`magazine_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articles`
+--
+
+LOCK TABLES `articles` WRITE;
+/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+INSERT INTO `articles` VALUES (1,'templates/images/e6efe2efcf83fada.jpg','Alpaca',2,'Alpaca is valued for its excellent curly wool, which is used to make sweaters. The alpaca is also very cute, although it can be quite short-tempered. You can interact with alpacas at any of the many farms in Peru. And Machu Picchu is a great place to watch wild alpacas.','Arkady Yakovlevich Abramov',2020),(2,'templates/images/belugawhale.jpg','Beluga Whale',4,'About four meters long, the white, baby-faced beluga whale that lives in the frigid seas of the Arctic is about one-fifth the size of the blue whale. With its relatively small size, original muzzle and bump on the forehead, the beluga whale is undoubtedly charming. In captivity, the white whale can chirp on command and blow bubbles.','Sazonov Gordey Stanislavovich',2020),(4,'templates/images/chameleon.jpg','Chameleon The',3,'chameleon is one of the most attractive reptiles, perhaps due to its bulging eyes, sadly twisted mouth, prehensile tail or very long tongue. He also has a remarkable ability to change color with mood swings and the ability to move around like a sailor during a pitching. Not the most efficient form of transportation, but certainly eye-catching. About half of all chameleons in the world can be found in Madagascar.','Yakovlev Robert Mikhaylovich',2022),(5,'templates/images/chinchilla.jpg','Chinchilla',2,'Native South American rodents are a prime example of how dangerous it is to be cute. For the sake of plush skins, the animals were ruthlessly hunted until their almost complete disappearance in the 19th century. Their skins are so soft, as there are 50 hairs per follicle in a chinchilla. In humans, for example, one follicle serves only one hair. Seeing chinchillas in the wild is difficult. They are few and live in the mountains. A relatively large population of these animals has been preserved in the Las Chinchillas National Reserve in Chile.','Maksimov Zinoviy Vsevolodovich',2019),(7,'templates/images/fennec.jpg','Fennec',4,'The fennec, the nocturnal animal of the desert, is immortalized in Antoine de Saint-Exupery\'s The Little Prince as a fox that wanted to be tamed. The smallest of the foxes - smaller than the domestic cat - with large ears and a tiny pointed snout, the fennec fox looks adorable and seductive. Not surprisingly, it is the commercial capture of fox cubs that poses the greatest threat to these animals, which everyone wants to take home. For those who prefer to observe this pleasant creature in the wild, there is the Sahara and other dry, sandy regions of North Africa from Morocco to Egypt.','Jan Timurovich Fadeev',2017),(8,'templates/images/giantpanda.jpg','Giant panda',5,'Black and white coloration, fat ass and incredibly thoughtful appearance when eating bamboo - these are the qualities that make the panda so charming. Although the panda has a predatory digestive system, it eats like a herbivore, consuming up to 38 kilograms of bamboo a day. Therefore, the panda is extremely dependent on its habitat. According to the World Wildlife Fund, only 1,600 of these cute bears are left in the wild.','Ilya Khristoforovich Bragin',2018),(9,'templates/images/harpseal.jpg','Harp seal',3,'It is no coincidence that many of the animals on this list are threatened with extinction. After all, quite often part of what makes them cute is a soft beautiful skin. Harp seal pups are covered in fluffy, snow-white fur, making them traditional targets for the fur industry. Despite the fact that the import of their fur has been banned in Europe since 1983, and seal hunting was banned in Canada in 1987, hundreds of thousands of these animals are still killed by poachers every year.','Rozhkov Mstislav Vladislavovich',2018),(10,'templates/images/hippo.jpg','Pygmy Hippo',2,'Like its big cousin, the pygmy hippo has squat legs, a broad muzzle, and extremely high swimming skills. But unlike its cousin, the pygmy hippo is not one of the most dangerous animals in Africa. Without the threat of being snatched up by a huge maw full of teeth, it\'s easy to accept that a hippopotamus, when at a dwarf size, can be quite cute. The pygmy hippopotamus is an endangered species. Therefore, it is much easier to find it in zoos than in the wild.','Shilov Rostislav Feliksovich',2019),(11,'templates/images/89ddd833d0e68620.jpg','Hummingbird',1,'Hummingbird is the smallest bird in the world. It is also the fastest - it flaps its wings 80 times per second. Slightly larger than a bee, hummingbirds even act similarly. They help plants reproduce by carrying pollen, fluttering from branch to branch, and drinking nectar. You can admire the hummingbird in Cuba.','Nikifor Yakunovich Yudin',2020),(12,'templates/images/koala.jpeg','Koala',2,'Koalas are not as cute as they look. Experts say that the mood of these animals constantly fluctuates from mildly angry to downright angry. The enduring popularity of koalas shows that in our time, good looks can dazzle and make you forget about personality flaws. Most koalas live in Australia. Tourists can get to know them closely - we hope, the friendliest ones - in the Lone Pine Koala park.','Velor Romanovich Kharitonov',2020),(13,'templates/images/lori.jpg','Lori',6,'Incredibly big-eyed loris native to the tropical jungles of Southeast Asia and is distinguished by such plush-looking, but strong legs. Lori can hang on a tree for several hours, holding on with only one limb. And often it does. Despite its incredibly cute appearance, this animal is poisonous. The poison comes from glands in the elbow and is injected through the teeth. However, it is not powerful enough to save lorises from the illegal pet trade. Therefore, the animal is listed in the Red Book.','Grishin Iraklii Mitrofanovich',-2021),(14,'templates/images/meerkat.png','Meerkat',4,'Meerkats come from the mongoose family and live in the Kalahari, Namib, South Africa and parts of Angola. Meerkats are not cute with their faces, which, although far from ugly, almost do not differ from the usual faces of mongooses. The beauty of meerkats is how they stand, like a man - vertically and modestly folding their paws on their stomachs.','Kulagin Ostap Artemovich',2021),(15,'templates/images/penguin.jpg','Penguin',2,'Happy Feet, \"Madagascar\", \"Mr. Popper\'s Penguins\" - these squat waterfowl have made a prominent place in pop culture. There are 17 species of sea penguins. Most of them are painted in a variation of black and white, none can fly, and all are excellent swimmers. Surprisingly, penguins are also excellent runners. Six species of these birds live in Antarctica, so the most enjoyable way to admire them is to take part in a cruise. And a team of naturalists on board will help determine which specific penguins you see - adele, royal or emperor.','Venedikt Ilyaovich Vishnyakov',2022),(16,'templates/images/philippinetarsier.jpg','Philippine tarsier',1,'The smallest primate in the world, the Philippine tarsier has all the basic qualities of a cute creature: huge eyes, a tiny body no larger than a human fist, and small paws with which it grabs tree branches. Tarsiers are extremely unhappy in captivity. According to experts, these animals need at least one hectare of space, and captive tarsiers can even commit suicide. Therefore, you can see tarsiers only in the reserve in the Corella forest in the Philippines.','Dmitriev Martin Stepanovich',2021),(17,'templates/images/redpanda.jpg','Red Panda',2,'Red pandas have very little in common with their cousins, the monochrome giant pandas. With a bushy raccoon-ringed tail, pointed ears, reddish-brown coloration, and short legs, these arboreal animals were difficult to classify. There are very few of these cute animals left in nature. In addition, they are very shy, so meeting them is a great success. The safest bet would be to visit one of the panda research centers in China.','Vasiliev Georgiy Serapionovich',2019),(18,'templates/images/roe.jpg','Roe',3,'deer Chestnut roe deer, about the size of a goat and native to England. According to the British, it is not difficult to meet roe deer while walking in the forest: \"If you walk very calmly through a more or less dense forest no later than an hour after the start of sunrise, you will probably meet them.\"','Kalashnikov Moses Bogdanovich',2019),(19,'templates/images/seaotters.jpg','Sea Otters',3,'Sea Otter Sea otters are as smart as they are cute. They use rocks as a tool to crack open shellfish and mussels, and sleep face up on the surface of the water wrapped in kelp. Sea otters are sociable and swim together in groups of up to 100 individuals.','Yefimov Fyodor Khristoforovich',2019),(32,'templates/images/default-card-picture.png','Панцкпцкп',7,'фгупкнфукифркмрйука','уирацкиаукц',-234234),(34,'templates/images/default-card-picture.png','qweqweqwqwe',1,'qweqwqweqweqw','123123123121',2021);
+/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `magazines`
+--
+
+DROP TABLE IF EXISTS `magazines`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `magazines` (
+  `magazine_id` int NOT NULL AUTO_INCREMENT,
+  `magazine_title` varchar(100) NOT NULL,
+  PRIMARY KEY (`magazine_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `magazines`
+--
+
+LOCK TABLES `magazines` WRITE;
+/*!40000 ALTER TABLE `magazines` DISABLE KEYS */;
+INSERT INTO `magazines` VALUES (1,'ADAC Motorwelt'),(2,'Reader\'s Digest'),(3,'Cosmopolitan'),(4,'National Geographic'),(5,'Good Housekeeping'),(6,'Gushi Hui (\"Истории\")'),(7,'Glamour'),(8,'Duzhe (\"Читатель\")'),(9,'People'),(10,'\"Антенна-Телесемь\"');
+/*!40000 ALTER TABLE `magazines` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `date_of_birth` varchar(255) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `gender` varchar(100) NOT NULL,
+  `interests` varchar(100) DEFAULT NULL,
+  `vk` varchar(100) DEFAULT NULL,
+  `blood_group` bigint DEFAULT NULL,
+  `rh_factor` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (12,'Example@gmail.com','$2y$10$nv2U2.Yq.AaP.fXsmcAH9eJbwWFfUakIzvCCVze.m14opZiFRT5ty','ExampleUsername','2022-12-10','ExampleAddress','Mail','ExampleInterests','vk',4,'-'),(13,'rwfwef@gmail.com','$2y$10$dnQreeqZQ/APPi.YOAZj6OVkQMTLEdAWWkvucoP92QEnrcV8SmUlO','rrrrrr','2022-12-18','yyyyyy','Femail','iiiiiii','kkkkkkk',4,'rrrrrr'),(14,'Maksim@gmail.com','$2y$10$LvwPft6hM/6VbRIPI8cad.0A24oIB0UFkOz3wO7wz.QYVeS.cl1He','Maksim Yrepin','2022-12-24','Volgograd','Mail','Woman','1111111',8,'+'),(15,'qwezxc@gmail.com','$2y$10$idc3vgipMt1mV8TgNUIdGOtNJys/oOlQkZqCWOGxRx3oA2oEn545W','qwe','2022-12-08','volgograd','Mail','tff','vk',3,'+');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-12-27 13:20:44
